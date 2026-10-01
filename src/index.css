@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #050816;
+    --ink: #f3f4ff;
+    --dim: #8b90b0;
+    --v: #6d3df5;
+    --b: #2f6bf0;
+    --t: #0fd6c2;
+    --y: #d4e21a;
+    --line: rgba(160, 170, 255, 0.16);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  }
+
+  html[lang="ar"] {
+    font-family: 'Cairo', 'Manrope', system-ui, sans-serif;
+  }
+
+  html[lang="ar"] .font-display {
+    font-family: 'Cairo', 'Unbounded', sans-serif;
+    letter-spacing: 0 !important;
+  }
+}
+
+.font-display {
+  font-family: 'Unbounded', sans-serif;
+}
+
+.font-body {
+  font-family: 'Manrope', sans-serif;
+}
+
+.font-arabic {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(10, 14, 36, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+}
+
+.glass-panel-subtle {
+  background: rgba(13, 18, 45, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(160, 170, 255, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(109, 61, 245, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 214, 194, 0.6);
+}
+
+/* Conic Ring Animation */
+@keyframes spinRing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinRing 20s linear infinite;
+}
+
+/* Ambient Drift */
+@keyframes driftOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6vw, -4vh) scale(1.1);
+  }
+  100% {
+    transform: translate(-4vw, 5vh) scale(0.95);
+  }
+}
+
+.animate-drift {
+  animation: driftOrb 18s ease-in-out infinite alternate;
+}
+
+/* Button Shimmer */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-22deg);
+  animation: btnShine 4s infinite;
+}
+
+@keyframes btnShine {
+  0%, 40% {
+    left: -70%;
+  }
+  70%, 100% {
+    left: 140%;
+  }
+}
+
+/* Marquee continuous scroll */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee,
+  .animate-spin-slow,
+  .animate-drift,
+  .btn-shimmer::after {
+    animation: none !important;
+  }
+}

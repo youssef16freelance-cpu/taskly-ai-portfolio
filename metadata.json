@@ -1,0 +1,8 @@
+{
+  "name": "Remix Taskly AI — Creative Portfolio",
+  "description": "Production-ready creative portfolio for Vexlume and Taskly AI studio featuring branding, visual design, content creation, and digital marketing with English and Arabic RTL support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
